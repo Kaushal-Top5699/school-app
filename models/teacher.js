@@ -4,8 +4,7 @@ const validator = require('validator')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcryptjs')
 
-const userSchema = new Schema({
-
+const teacherSchema = new Schema({
     name: {
         type: String,
         required: true,
@@ -107,6 +106,10 @@ const userSchema = new Schema({
         }
     },
     institutionInfo: {
+        subject: {
+            type: String,
+            default: "null"
+        },
         intitutionID: {
             type: String,
             default: "null"
@@ -151,7 +154,7 @@ const userSchema = new Schema({
     }]
 })
 
-userSchema.methods.toJSON = function () {
+teacherSchema.methods.toJSON = function () {
     const user = this
     const userObject = user.toObject()
 
@@ -162,7 +165,7 @@ userSchema.methods.toJSON = function () {
 }
 
 //This method generates a token for user
-userSchema.methods.generateAuthToken = async function () {
+teacherSchema.methods.generateAuthToken = async function () {
     const user = this
     const token = jwt.sign({ _id: user._id.toString() }, 'thisismynewcourse')
 
@@ -173,7 +176,7 @@ userSchema.methods.generateAuthToken = async function () {
 }
 
 //Finds the user with email and password, for logging in the users
-userSchema.statics.findByCredentials = async (email, password) => {
+teacherSchema.statics.findByCredentials = async (email, password) => {
     const user = await User.findOne({ email })
 
     if (!user) {
@@ -189,7 +192,7 @@ userSchema.statics.findByCredentials = async (email, password) => {
     return user
 }
 
-userSchema.statics.findEmail = async (email) => {
+teacherSchema.statics.findEmail = async (email) => {
     const user = await User.findOne({ email })
 
     if (user) {
@@ -201,7 +204,7 @@ userSchema.statics.findEmail = async (email) => {
 }
 
 //Hash the plain text password before saving
-userSchema.pre('save', async function (next) {
+teacherSchema.pre('save', async function (next) {
     const user = this
 
     if (user.isModified('password')) {
@@ -211,5 +214,5 @@ userSchema.pre('save', async function (next) {
     next()
 })
 
-const User = mongoose.model('Admin', userSchema)
+const User = mongoose.model('Teacher', teacherSchema)
 module.exports = User
