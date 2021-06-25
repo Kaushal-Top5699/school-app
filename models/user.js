@@ -5,18 +5,19 @@ const jwt = require('jsonwebtoken')
 const bcrypt = require('bcryptjs')
 
 const userSchema = new Schema({
-    username: {
+
+    name: {
         type: String,
         required: true,
         trim: true
     },
-    bio: {
+    age: {
         type: String,
-        default: "Update your bio"
+        default: "null"
     },
-    profileImage: {
+    avatar: {
         type: String,
-        default: "Image link"
+        default: "null"
     },
     email: {
         type: String,
@@ -29,6 +30,108 @@ const userSchema = new Schema({
             }
         }
     },
+    gender: {
+        type: String,
+        required: true
+    },
+    phone: {
+        type: String,
+        required: true
+    },
+    information: {
+        degree: {
+            title: {
+                type: String,
+                default: "null"
+            },
+            showInfo: {
+                type: Boolean,
+                default: false
+            }
+        },
+        education: {
+            school: {
+                location: {
+                    type: String,
+                    default: "null"
+                },
+                name: {
+                    type: String,
+                    default: "null"
+                },
+                showInfo: {
+                    type: Boolean,
+                    default: false
+                },
+                yearOfPassing: {
+                    type: String,
+                    default: "null"
+                }
+            },
+            preUniversity: {
+                location: {
+                    type: String,
+                    default: "null"
+                },
+                name: {
+                    type: String,
+                    default: "null"
+                },
+                showInfo: {
+                    type: Boolean,
+                    default: false
+                },
+                yearOfPassing: {
+                    type: String,
+                    default: "null"
+                }
+            },
+            university: {
+                location: {
+                    type: String,
+                    default: "null"
+                },
+                name: {
+                    type: String,
+                    default: "null"
+                },
+                showInfo: {
+                    type: Boolean,
+                    default: false
+                },
+                yearOfPassing: {
+                    type: String,
+                    default: "null"
+                }
+            }
+        }
+    },
+    institutionInfo: {
+        intitutionID: {
+            type: String,
+            default: "null"
+        }
+    },
+    loginInfo: {
+        isOnline: {
+            type: Boolean,
+            default: false
+        },
+        lastLoggedIn: {
+            type: Date,
+            default: null
+        }
+    },
+    logionOptions: {
+        permitLogin: {
+            type: Boolean,
+            default: false
+        },
+        reason: {
+            type: String,
+            default: "null"
+        }
+    },
     password: {
         type: String,
         required: true,
@@ -39,18 +142,6 @@ const userSchema = new Schema({
                 throw new Error('Password cannot contain "password"')
             }
         }
-    },
-    posts: {
-        type: Number,
-        default: 0
-    },
-    followers: {
-        type: Array,
-        required: true
-    },
-    following: {
-        type: Array,
-        required: true
     },
     tokens: [{
         token: {
