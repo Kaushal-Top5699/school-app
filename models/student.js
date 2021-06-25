@@ -38,6 +38,30 @@ const studentSchema = new Schema({
         required: true
     },
     information: {
+        fathersName: {
+            type: String,
+            default: "null"
+        },
+        fathersOccupation: {
+            type: String,
+            default: "null"
+        },
+        fathersPhone: {
+            type: String,
+            default: "null"
+        },
+        mothersName: {
+            type: String,
+            default: "null"
+        },
+        mothersOccupation: {
+            type: String,
+            default: "null"
+        },
+        mothersPhone: {
+            type: String,
+            default: "null"
+        },
         degree: {
             title: {
                 type: String,
@@ -105,12 +129,24 @@ const studentSchema = new Schema({
             }
         }
     },
-    institutionInfo: {
+    institutionInfo: [{
+        rollNumber: {
+            type: String,
+            default: "null"
+        },
+        classUid: {
+            type: String,
+            default: "null"
+        },
+        studentUid: {
+            type: String,
+            default: "null"
+        },
         intitutionID: {
             type: String,
             default: "null"
         }
-    },
+    }],
     loginInfo: {
         isOnline: {
             type: Boolean,
