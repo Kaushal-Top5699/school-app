@@ -6,6 +6,7 @@ const app = express()
 const port = process.env.PORT || 3000
 app.use(express.json())
 
+console.log('Kaushal')
 
 const dbURI = process.env.MONGODB_KEY
 mongoose.set('useFindAndModify', false)
