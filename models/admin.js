@@ -5,7 +5,6 @@ const jwt = require('jsonwebtoken')
 const bcrypt = require('bcryptjs')
 
 const adminSchema = new Schema({
-
     name: {
         type: String,
         required: true,
@@ -122,7 +121,7 @@ const adminSchema = new Schema({
             default: null
         }
     },
-    logionOptions: {
+    loginOptions: {
         permitLogin: {
             type: Boolean,
             default: false

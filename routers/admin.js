@@ -4,8 +4,8 @@ const auth = require('../middleware/auth')
 const mongoose = require('mongoose')
 const Admin = require('../models/admin')
 
-router.post('/signup', async (req, res) => {
-
+router.post('/admin/signup', async (req, res) => {
+    // Required fields: Name, Gender, Email, Phone, Password
     const admin = new Admin(req.body)
 
     try {
@@ -23,8 +23,7 @@ router.post('/signup', async (req, res) => {
     }
 })
 
-router.post('/login', async (req, res) => {
-
+router.post('/admin/login', async (req, res) => {
     try {
 
         const admin = await Admin.findByCredentials(req.body.email, req.body.password)
@@ -38,8 +37,7 @@ router.post('/login', async (req, res) => {
     }
 })
 
-router.post('/logout', auth, async (req, res) => {
-
+router.post('/admin/logout', auth, async (req, res) => {
     try {
 
         req.admin.tokens = req.admin.tokens.filter((token) => {

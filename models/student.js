@@ -157,7 +157,7 @@ const studentSchema = new Schema({
             default: null
         }
     },
-    logionOptions: {
+    loginOptions: {
         permitLogin: {
             type: Boolean,
             default: false
