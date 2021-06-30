@@ -52,4 +52,17 @@ router.post('/admin/logout', auth, async (req, res) => {
     }
 })
 
+router.post('/admin/update-profile', auth, async (req, res) => {
+
+    try {
+        await Admin.findByIdAndUpdate({ _id: req.admin._id }, req.body)
+        const admin = await Admin.findById({ _id: req.admin._id })
+        res.status(200).send(admin)
+
+    } catch (error) {
+        console.log(error)
+        res.status(500).send(error)
+    }
+})
+
 module.exports = router

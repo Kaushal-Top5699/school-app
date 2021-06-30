@@ -49,42 +49,6 @@ const adminSchema = new Schema({
             }
         },
         education: {
-            school: {
-                location: {
-                    type: String,
-                    default: "null"
-                },
-                name: {
-                    type: String,
-                    default: "null"
-                },
-                showInfo: {
-                    type: Boolean,
-                    default: false
-                },
-                yearOfPassing: {
-                    type: String,
-                    default: "null"
-                }
-            },
-            preUniversity: {
-                location: {
-                    type: String,
-                    default: "null"
-                },
-                name: {
-                    type: String,
-                    default: "null"
-                },
-                showInfo: {
-                    type: Boolean,
-                    default: false
-                },
-                yearOfPassing: {
-                    type: String,
-                    default: "null"
-                }
-            },
             university: {
                 location: {
                     type: String,
@@ -97,10 +61,6 @@ const adminSchema = new Schema({
                 showInfo: {
                     type: Boolean,
                     default: false
-                },
-                yearOfPassing: {
-                    type: String,
-                    default: "null"
                 }
             }
         }
@@ -128,7 +88,7 @@ const adminSchema = new Schema({
         },
         reason: {
             type: String,
-            default: "null"
+            default: "infoRequired"
         }
     },
     password: {
