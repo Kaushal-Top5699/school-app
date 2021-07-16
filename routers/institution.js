@@ -12,10 +12,19 @@ router.get("/institution/:uid", async (req, res) => {
         const params = req.params
         const uid = params["uid"]
 
-        const result = await Institution.findOne({ $or: [{ _id: mongoose.Types.ObjectId(uid) }, { instId: uid.toString() }] })
+        const queries = req.query
+        const fields = queries["fields"]
+
+        var result
+
+        if (fields)
+            result = await Institution.findOne({ $or: [{ _id: mongoose.Types.ObjectId(uid) }, { instId: uid.toString() }] })
+                .select(fields.toString().split('+').join(' '))
+        else
+            result = await Institution.findOne({ $or: [{ _id: mongoose.Types.ObjectId(uid) }, { instId: uid.toString() }] })
 
         if (!result)
-            return res.status(404).send("notFound")
+            return res.status(404).send({})
 
         return res.status(200).send(result)
     } catch (e) {
