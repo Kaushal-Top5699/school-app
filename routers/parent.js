@@ -5,9 +5,12 @@ const mongoose = require('mongoose')
 const Parent = require('../models/parent')
 
 router.post('/parent/signup', async (req, res) => {
-    // TODO: Convert response wardUid to ObjectId
+    // TODO (Done): Convert response wardUid to ObjectId
+    var response = req.body;
+    response["wardUid"] = mongoose.Types.ObjectId(response["wardUid"].toString())
+
     // Required fields: WardUid, Name, Gender, Email, Phone, Password
-    const parent = new Parent(req.body)
+    const parent = new Parent(response)
 
     try {
         const existingParent = await Parent.findEmail(req.body.email)
